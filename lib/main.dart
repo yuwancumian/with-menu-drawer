@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'pages/test.dart';
-import 'pages/note.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
 
@@ -12,32 +10,15 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: new ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: new MyHomePage(title: 'My Flutter App Demo'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -46,42 +27,140 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    List arr = ["123", "456", "789"];
-    return new Scaffold(
-        appBar: new AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: new Text(widget.title),
-        ),
-        body: new Center(
-//        child: Note(),
-            child: Column(
-          children: arr.map(_buildItem).toList(),
-        )));
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/floor.jpg'), fit: BoxFit.fill)),
+      child: new Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: new AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: new Text(widget.title,
+                style: TextStyle(
+                  fontFamily: 'bebas-neue',
+                  fontSize: 25,
+                )),
+            leading: IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                print(123);
+              },
+            ),
+          ),
+          body: ListView(
+            children: <Widget>[
+              _ItemCard(
+                headImageAssetPath: 'assets/home1.jpg',
+                title: 'item1',
+                subtitle: 'item subtilte1',
+                icon: Icons.fastfood,
+                iconBackgroundColor: Colors.red,
+                heartCount: 12,
+              ),
+              _ItemCard(
+                headImageAssetPath: 'assets/home2.jpg',
+                title: 'item1',
+                subtitle: 'item subtilte1',
+                icon: Icons.favorite,
+                iconBackgroundColor: Colors.red,
+                heartCount: 24,
+              ),
+              _ItemCard(
+                headImageAssetPath: 'assets/home3.jpg',
+                title: 'item1',
+                subtitle: 'item subtilte1',
+                icon: Icons.ac_unit,
+                iconBackgroundColor: Colors.red,
+                heartCount: 32,
+              ),
+            ],
+          )),
+    );
   }
+}
 
-  Widget _buildItem(item) {
-    return Test(name: item);
+class _ItemCard extends StatelessWidget {
+  final String headImageAssetPath;
+  final IconData icon;
+  final Color iconBackgroundColor;
+  final String title;
+  final String subtitle;
+  final int heartCount;
+
+  _ItemCard(
+      {this.headImageAssetPath,
+      this.icon,
+      this.iconBackgroundColor,
+      this.heartCount,
+      this.subtitle,
+      this.title});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      child: Card(
+        elevation: 10.0,
+        child: Column(
+          children: <Widget>[
+            Image.asset(headImageAssetPath,
+                width: double.infinity, height: 220.0, fit: BoxFit.cover),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                          color: iconBackgroundColor,
+                          borderRadius:
+                              BorderRadius.all(const Radius.circular(15.0))),
+                      child: Icon(icon, color: Colors.white)),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(title,
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text(subtitle,
+                          style:
+                              const TextStyle(fontSize: 16, color: Colors.grey))
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 2.0,
+                  height: 70.0,
+                  decoration: new BoxDecoration(
+                      gradient: LinearGradient(
+                    colors: [Colors.white, Colors.white, const Color(0xFFAA00)],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.favorite_border,
+                        color: Colors.red,
+                      ),
+                      Text('$heartCount')
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
