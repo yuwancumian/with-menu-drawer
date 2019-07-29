@@ -1,0 +1,79 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color attach --machine --device-id=A6E24730-F7D9-4F3C-BF69-E6BB5DF7E54E lib/main.dart
+
+## exception
+
+FormatException: FormatException: Bad UTF-8 encoding 0x4 (at offset 266)
+
+```
+#0      _Utf8Decoder.convert (dart:convert/utf.dart:444:15)
+#1      Utf8Decoder.convert (dart:convert/utf.dart:327:13)
+#2      Utf8Codec.decode (dart:convert/utf.dart:59:56)
+#3      decodeMDnsResponse.readResourceRecord (package:multicast_dns/src/packet.dart:337:34)
+#4      decodeMDnsResponse (package:multicast_dns/src/packet.dart:361:55)
+#5      MDnsClient._handleIncoming (package:multicast_dns/multicast_dns.dart:194:45)
+#6      _rootRunUnary (dart:async/zone.dart:1136:13)
+#7      _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#8      _CustomZone.runUnaryGuarded (dart:async/zone.dart:931:7)
+#9      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:336:11)
+#10     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:263:7)
+#11     _SyncStreamController._sendData (dart:async/stream_controller.dart:764:19)
+#12     _StreamController._add (dart:async/stream_controller.dart:640:7)
+#13     _StreamController.add (dart:async/stream_controller.dart:586:5)
+#14     new _RawDatagramSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:1871:33)
+#15     _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:856:14)
+#16     _microtaskLoop (dart:async/schedule_microtask.dart:41:21)
+#17     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50:5)
+#18     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:116:13)
+#19     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:173:5)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, v1.7.8+hotfix.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.7.8+hotfix.3 at /Users/kuankuan/Code/flutter
+    • Framework revision b712a172f9 (3 weeks ago), 2019-07-09 13:14:38 -0700
+    • Engine revision 54ad777fd2
+    • Dart version 2.4.0
+
+[!] Android toolchain - develop for Android devices (Android SDK version 29.0.1)
+    • Android SDK at /Users/kuankuan/Library/Android/sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-29, build-tools 29.0.1
+    • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+    ✗ Android licenses not accepted.  To resolve this, run: flutter doctor --android-licenses
+
+[✓] Xcode - develop for iOS and macOS (Xcode 10.2.1)
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Xcode 10.2.1, Build version 10E1001
+    • CocoaPods version 1.7.4
+
+[✓] iOS tools - develop for iOS devices
+    • ios-deploy 1.9.4
+
+[✓] Android Studio (version 3.4)
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin version 37.1.1
+    • Dart plugin version 183.6270
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+
+[✓] IntelliJ IDEA Ultimate Edition (version 2018.3)
+    • IntelliJ at /Applications/IntelliJ IDEA.app
+    • Flutter plugin version 31.3.4
+    • Dart plugin version 183.4733
+
+[✓] VS Code (version 1.36.1)
+    • VS Code at /Applications/Visual Studio Code.app/Contents
+    • Flutter extension version 3.2.0
+
+[✓] Connected device (1 available)
+    • iPhone Xʀ • A6E24730-F7D9-4F3C-BF69-E6BB5DF7E54E • ios • com.apple.CoreSimulator.SimRuntime.iOS-12-2 (simulator)
+
+! Doctor found issues in 1 category.
+```
+
