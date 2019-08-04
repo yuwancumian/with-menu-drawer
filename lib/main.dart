@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/screen/second_screen.dart';
+import 'package:hello_flutter/screen/third_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var activeScreen = secondScreen;
+  var activeScreen = thirdScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           appBar: new AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
-            title: new Text(secondScreen.title,
+            title: new Text(activeScreen.title,
                 style: TextStyle(
                   fontFamily: 'bebas-neue',
                   fontSize: 25,
